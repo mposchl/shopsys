@@ -8,7 +8,6 @@
     <property name="path.packages" value="${project.basedir}/packages"/>
     <property name="path.backend-api" value="${path.packages}/backend-api"/>
     <property name="path.framework" value="${path.packages}/framework"/>
-    <property name="path.framework-assets" value="${path.framework}/assets"/>
     <property name="path.utils" value="${project.basedir}/utils"/>
     <property name="translations.dump.flags" value=""/>
 
@@ -151,11 +150,11 @@
         <phingcall target="shopsys_framework.eslint-check"/>
         <exec executable="${path.eslint.executable}" passthru="true" checkreturn="true">
             <arg value="--color"/>
-            <arg path="${path.framework-assets}"/>
+            <arg path="${path.framework.assets}"/>
             <arg value="--config"/>
             <arg path="${path.root}/.eslintrc.json"/>
             <arg value="--ignore-path"/>
-            <arg path="${path.framework-assets}/.eslintignore"/>
+            <arg path="${path.framework.assets}/.eslintignore"/>
         </exec>
     </target>
 
@@ -169,11 +168,11 @@
         <exec executable="${path.eslint.executable}" passthru="true" checkreturn="true">
             <arg value="--color"/>
             <arg value="--fix"/>
-            <arg path="${path.framework-assets}"/>
+            <arg path="${path.framework.assets}"/>
             <arg value="--config"/>
             <arg path="${path.root}/.eslintrc.json"/>
             <arg value="--ignore-path"/>
-            <arg path="${path.framework-assets}/.eslintignore"/>
+            <arg path="${path.framework.assets}/.eslintignore"/>
         </exec>
     </target>
 
@@ -184,7 +183,7 @@
 
     <target name="npm-install-dependencies" description="Installs node modules dependencies." hidden="true">
         <phingcall target="shopsys_framework.npm-install-dependencies"/>
-        <exec executable="${path.npm.executable}" dir="${path.framework-assets}" logoutput="true" passthru="true" checkreturn="true">
+        <exec executable="${path.npm.executable}" dir="${path.framework.assets}" logoutput="true" passthru="true" checkreturn="true">
             <arg value="link"/>
         </exec>
 
